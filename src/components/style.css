@@ -1,0 +1,148 @@
+.color {
+  color: #fff !important;
+  background-color: #cc6666 !important;
+  border-color: #cc6666 !important;
+}
+
+.bg-darkblue {
+  background-color: #091f43;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 90%;
+  width: 70%;
+  margin-top: 3.5rem;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.fixed {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.card {
+  width: 35rem;
+  margin-bottom: 2rem;
+}
+.card-top {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+  height: 80px;
+}
+
+.pp {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+}
+.profil-name {
+  font-size: 1.3rem;
+}
+
+.publi-moment {
+  font-size: 1rem;
+  color: grey;
+}
+
+.card-contener {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+}
+
+.card-info {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  width: 85%;
+}
+
+.option {
+  height: 40px;
+  margin-top: 10px;
+}
+
+.card-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 30px;
+}
+
+.fa-search {
+  color: green;
+}
+
+.btn-outline-success:hover > .fa-search {
+  color: white;
+}
+
+.liked {
+  color: #cc6666;
+}
+
+.fa-home {
+  color: #fff;
+}
+
+.card-body {
+  padding: 0.6rem 0.6rem !important;
+}
+
+#app{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-nav{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-between;
+  width: 25%;
+}
+
+.options{
+  z-index: 3;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  position: absolute;
+  right: 1%;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
