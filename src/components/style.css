@@ -112,7 +112,7 @@ body {
   padding: 0.6rem 0.6rem !important;
 }
 
-#app{
+#app {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -120,16 +120,16 @@ body {
   align-items: center;
 }
 
-.btn-nav{
+.btn-nav {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-content: center;
   justify-content: space-between;
-  width: 25%;
+  width: 320px;
 }
 
-.options{
+.options {
   z-index: 3;
 }
 
@@ -143,6 +143,56 @@ body {
   right: 1%;
   background-color: #f1f1f1;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
+}
+
+.notifbox {
+  background-color: #cc6666;
+  position: absolute;
+  width: 500px;
+  height: 1635%;
+  border-radius: 1%;
+  top: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  left: 0%;
+}
+
+.liaison {
+  top: 79%;
+  background-color: #cc6666;
+  position: absolute;
+  width: 142px;
+  left: 202px;
+  height: 27px;
+}
+
+.notif{
+  margin-top: 10px;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+  min-height: 80px;
+  background-color: grey;
+  border-radius: 2%;
+}
+
+.user{
+  font-weight: bold;
+}
+
+.info-notif{
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.notif-moment{
+  font-size: 1rem;
 }

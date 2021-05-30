@@ -6,11 +6,24 @@
           <i class="fas fa-home"></i> Accueil
         </button>
         <button type="button" class="btn color">Profil</button>
-        <button type="button" class="btn color">
+        <button
+          v-on:click="notifShow = !notifShow"
+          type="button"
+          class="btn color"
+        >
           Notifications <span class="badge bg-secondary">4</span>
         </button>
-        <div class="notifbox">
-          <div class="notif"></div>
+        <div v-show="notifShow" class="liaison"></div>
+        <div v-show="notifShow" class="notifbox">
+          <div class="notif">
+            <img class="pp" src="../assets/pp.jpg" alt="photo de profil" />
+            <div class="info-notif">
+              <p>
+                <span class="user">Un random</span> à commenter votre publication
+              </p>
+              <h4 class="notif-moment">Jeudi 21 Juin 19h31</h4>
+            </div>
+          </div>
         </div>
       </div>
       <form class="d-flex">
