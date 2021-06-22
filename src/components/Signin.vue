@@ -5,7 +5,12 @@
 </template>
 
 <script>
+
 export default {
     name:"Signin",
 }
-</script>
+</script> 
+
+<style>
+@import "../assets/styles/style.css";
+</style>

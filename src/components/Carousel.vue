@@ -56,8 +56,12 @@ import Signin from "./components/Signin";
 export default {
   components: {
     Signup,
-    Signin,
+    //Signin,
   },
   name: "Carousel",
 };
 </script>
+
+<style>
+@import "../assets/styles/style.css";
+</style>

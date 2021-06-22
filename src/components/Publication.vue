@@ -16,11 +16,11 @@
             <i class="fas fa-ellipsis-v"></i>
           </button>
           <div v-if="show" class="dropdown-content options">
-            <button>supprimer</button>
+            <button class="btn btn-secondary">supprimer</button>
             <div class="separtion"></div>
-            <button>modifier</button>
+            <button class="btn btn-secondary">modifier</button>
             <div class="separation"></div>
-            <button>signaler</button>
+            <button class="btn btn-secondary">signaler</button>
           </div>
         </div>
       </div>
@@ -33,15 +33,16 @@
       </p>
     </div>
     <div class="card-bottom">
-      <button class="like"><i class="fas fa-heart fa-lg"></i></button>
-      <button class="comment"><i class="far fa-comment fa-lg"></i></button>
-      <button class="share"><i class="fas fa-share fa-lg"></i></button>
+      <button class="btn like"><i class="fas fa-heart fa-lg"></i></button>
+      <button class="btn comment"><i class="far fa-comment fa-lg"></i></button>
+      <button class="btn share"><i class="fas fa-share fa-lg"></i></button>
     </div>
   </div>
 </template>
 
 
 <script>
+
 export default {
   name: "Publication",
 

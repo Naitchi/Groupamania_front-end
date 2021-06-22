@@ -6,8 +6,8 @@
 
 
 <script>
-
 import Publication from './Publication';
+import store from '../store';
 
 export default {
   name: "News",

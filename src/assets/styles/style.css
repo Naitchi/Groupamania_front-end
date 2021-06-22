@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .color {
   color: #fff !important;
   background-color: #cc6666 !important;
@@ -16,7 +21,8 @@
   flex-wrap: wrap;
   height: 90%;
   width: 70%;
-  margin-top: 3.5rem;
+  margin-top: 3.4rem;
+  background-color: #d3d3d317;
 }
 
 body {
@@ -32,11 +38,20 @@ body {
   top: 0;
   left: 0;
   z-index: 1;
+  width: 100%;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card {
-  width: 35rem;
-  margin-bottom: 2rem;
+  width: 465px;
+  margin: 1rem 0 1rem 0;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
 }
 .card-top {
   display: flex;
@@ -53,7 +68,7 @@ body {
   border-radius: 50%;
 }
 .profil-name {
-  font-size: 1.3rem;
+  font-size: 1.8rem;
 }
 
 .publi-moment {
@@ -82,6 +97,7 @@ body {
 .option {
   height: 40px;
   margin-top: 10px;
+  margin-right: 10px;
 }
 
 .card-bottom {
@@ -145,6 +161,10 @@ body {
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
 }
 
 .notifbox {
@@ -162,12 +182,12 @@ body {
 }
 
 .liaison {
-  top: 79%;
+  top: 71%;
   background-color: #cc6666;
   position: absolute;
-  width: 142px;
-  left: 202px;
-  height: 27px;
+  width: 138px;
+  left: 194px;
+  height: 19px;
 }
 
 .notif {
@@ -194,7 +214,7 @@ body {
 }
 
 .notif-moment {
-  font-size: 1rem;
+  font-size: 1.3rem;
 }
 
 /*Séparation*/
@@ -255,4 +275,35 @@ h1 {
 
 #signup > a {
   color: #cc6666;
+}
+
+input[type="search"] {
+  width: 250px;
+}
+
+.d-flex {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 813px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.btn {
+  font-size: 17px !important;
+}
+
+.card-img{
+  width: 450px;
+}
+
+button{
+  padding: 1px 6px !important;
 }
