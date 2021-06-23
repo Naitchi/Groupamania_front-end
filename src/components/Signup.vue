@@ -14,14 +14,18 @@
     <label for="birthday">Date d'anniversaire</label>
     <input id="birthday" type="date" />
 
-    <a>Déjà un compte ? Connectez-vous ici</a>
+    <a @click="goSignin()">Déjà un compte ? Connectez-vous ici</a>
   </div>
 </template>
 
 <script>
-
 export default {
   name: "Signup",
+  methods: {
+    goSignin() {
+      this.$emit("goSignin");
+    },
+  },
 };
 </script>
 

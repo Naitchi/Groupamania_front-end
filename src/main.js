@@ -1,12 +1,21 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import App from './App.vue'
-import store from './store.js'
+import Vue from "vue";
+import Vuex from "vuex";
+import VueRouter from "vue-router";
+import App from "./App.vue";
+import store from "./store.js";
+import routes from "./routes.js";
 
-Vue.config.productionTip = false
-Vue.use(Vuex)
+const router = new VueRouter({
+  mode: "history",
+  routes,
+});
+
+Vue.config.productionTip = false;
+Vue.use(Vuex);
+Vue.use(VueRouter);
 
 new Vue({
+  router,
   store,
-  render: h => h(App)
-}).$mount('#app')
+  render: (h) => h(App),
+}).$mount("#app");

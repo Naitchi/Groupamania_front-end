@@ -1,22 +1,21 @@
 <template>
   <div id="app">
-    <Nav />
-    <News />
+    <router-view />
   </div>
 </template>
 
 <script>
-import Nav from "./components/Nav";
-import News from "./components/News";
-
+import EventBus from "./EventBus";
 export default {
-  name: "App",
-
-  components: {
-    Nav,
-    News,
+  created() {
+    EventBus.$on("event", this.mafonction);
   },
-
+  methods: {
+    mafonction() {
+      console.log("j'ai été appelé");
+    },
+  },
+  name: "App",
   data: () => ({}),
 };
 </script>

@@ -1,20 +1,18 @@
 <template>
-      <div class="main-container bg-light">
-        <Publication/>
-      </div>
+  <div class="main-container bg-light">
+    <Publication />
+  </div>
 </template>
 
 
 <script>
-import Publication from './Publication';
-import store from '../store';
+import Publication from "./Publication";
 
 export default {
   name: "News",
   components: { Publication },
 
-  data: () => ({
-  }),
+  data: () => ({}),
 };
 </script>
  

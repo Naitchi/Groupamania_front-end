@@ -230,20 +230,21 @@ body {
 }
 
 h1 {
-  font-size: 16rem;
+  font-size: 10rem;
   color: #091f43;
   font-family: "Roboto";
   margin-top: 0px;
 }
 
 #connection {
+  width: 100%;
+  height: 100vh;
   flex-flow: row wrap !important;
   justify-content: space-between !important;
   background-color: #091f43;
 }
 
 #index {
-  height: 100vh;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -300,10 +301,10 @@ input[type="search"] {
   font-size: 17px !important;
 }
 
-.card-img{
+.card-img {
   width: 450px;
 }
 
-button{
+button {
   padding: 1px 6px !important;
 }
