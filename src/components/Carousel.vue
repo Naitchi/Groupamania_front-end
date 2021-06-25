@@ -7,10 +7,7 @@
     </div>
 
     <Signup v-if="this.signup" v-on:goSignin="turn"></Signup>
-
-    <div v-if="!this.signup">
-      <Signin />
-    </div>
+    <Signin v-if="!this.signup" v-on:goSignup="turn"></Signin>
   </div>
 </template>
 
@@ -32,6 +29,7 @@ export default {
   methods: {
     turn() {
       this.signup = !this.signup;
+      console.log(this.signup);
     },
   },
 };

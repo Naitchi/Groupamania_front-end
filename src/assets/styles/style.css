@@ -308,3 +308,27 @@ input[type="search"] {
 button {
   padding: 1px 6px !important;
 }
+
+#signin {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-around;
+  align-items: center;
+  height: 255px;
+  margin-top: 100px;
+}
+
+#signin > a {
+  color: #cc6666;
+}
+
+#signin > h2,
+#signin > label {
+  color: white;
+}
+
+#signin > input {
+  width: 200px;
+  height: 30px;
+}
