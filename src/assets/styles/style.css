@@ -230,7 +230,7 @@ body {
 }
 
 h1 {
-  font-size: 10rem;
+  font-size: 10rem !important;
   color: #091f43;
   font-family: "Roboto";
   margin-top: 0px;
@@ -269,7 +269,7 @@ h1 {
   margin: 0 30px 0 30px;
 }
 
-#signup > h2,
+.signup > h2,
 #signup > label {
   color: white;
 }
@@ -309,7 +309,7 @@ button {
   padding: 1px 6px !important;
 }
 
-#signin {
+.signin {
   display: flex;
   flex-direction: column;
   align-content: center;
@@ -319,16 +319,16 @@ button {
   margin-top: 100px;
 }
 
-#signin > a {
-  color: #cc6666;
+.signin > a {
+  color: #cc6666 !important;
 }
 
-#signin > h2,
-#signin > label {
+.signin > h2,
+.signin > label {
   color: white;
 }
 
-#signin > input {
+.signin > input {
   width: 200px;
   height: 30px;
 }

@@ -3,7 +3,7 @@ import News from "./components/News";
 import Carousel from "./components/Carousel";
 
 const routes = [
-  { path: "/Entry", component: Carousel },
+  { path: "/", component: Carousel },
   { path: "/Main", component: Nav },
   { path: "/Main", component: News },
 ];

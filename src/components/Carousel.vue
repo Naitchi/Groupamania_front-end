@@ -29,7 +29,6 @@ export default {
   methods: {
     turn() {
       this.signup = !this.signup;
-      console.log(this.signup);
     },
   },
 };

@@ -1,14 +1,25 @@
-export async function getAllUsers() {
+import http from "../http-common";
 
-    const response = await fetch('/api/user/');
-    return await response.json();
+class UserService {
+  getAll() {
+    return http.get("/user/getAll");
+  }
+
+  get(id) {
+    return http.get(`/user/${id}`);
+  }
+
+  create(data) {
+    return http.post("/user/signup", data);
+  }
+
+  /*update(id, data) {
+    return http.put(`/tutorials/${id}`, data);
+  }*/
+
+  delete(id) {
+    return http.delete(`/user/${id}/deleteAccount`);
+  }
 }
 
-export async function createUser(data) {
-    const response = await fetch(`/api/user/signup`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({user: data})
-      })
-    return await response.json();
-}
+export default new UserService();
