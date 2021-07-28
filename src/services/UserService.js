@@ -9,10 +9,6 @@ class UserService {
     return http.get(`/user/${id}`);
   }
 
-  create(data) {
-    return http.post("/user/signup", data);
-  }
-
   /*update(id, data) {
     return http.put(`/tutorials/${id}`, data);
   }*/

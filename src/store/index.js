@@ -8,6 +8,7 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     notifShow: false,
+    user_id: "",
   },
   getters: {
     getNotifValue: (state) => {
@@ -17,6 +18,9 @@ const store = new Vuex.Store({
   mutations: {
     showChange(state) {
       return (state.notifShow = !state.notifShow);
+    },
+    saveUserId(state, userId) {
+      state.user_id = userId;
     },
   },
   actions: {},

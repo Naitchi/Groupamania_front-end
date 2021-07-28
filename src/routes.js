@@ -1,11 +1,12 @@
-import Nav from "./components/Nav";
-import News from "./components/News";
 import Carousel from "./components/Carousel";
+import Main from "./view/Main";
 
 const routes = [
-  { path: "/", component: Carousel },
-  { path: "/Main", component: Nav },
-  { path: "/Main", component: News },
+  {
+    path: "/login",
+    component: Carousel,
+  },
+  { path: "/main", component: Main },
 ];
 
 export default routes;

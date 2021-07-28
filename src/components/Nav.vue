@@ -10,6 +10,9 @@
           Notifications
           <span class="badge bg-secondary">4</span>
         </button>
+        <button @click.prevent="logOut" type="button" class="btn color">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
         <div v-show="hasNotifValue()" class="liaison"></div>
         <div v-show="hasNotifValue()" class="notifbox">
           <div class="notif">
@@ -52,6 +55,10 @@ export default {
     ]),
   },
   methods: {
+    logOut() {
+      this.$store.dispatch("auth/logout");
+      this.$router.push("/login");
+    },
     booleanChange() {
       store.commit("showChange");
     },

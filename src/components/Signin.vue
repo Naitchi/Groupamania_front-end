@@ -61,7 +61,7 @@ export default {
   },
   created() {
     if (this.loggedIn) {
-      this.$router.push("/profile");
+      this.$router.push("/main");
     }
   },
   methods: {
@@ -74,9 +74,10 @@ export default {
           return;
         }
         if (this.user.email && this.user.password) {
+          console.log(this.user);
           this.$store.dispatch("auth/login", this.user).then(
             () => {
-              this.$router.push("/profile");
+              this.$router.push("/main");
             },
             (error) => {
               this.loading = false;

@@ -1,20 +1,20 @@
 import axios from "axios";
+import store from "../store/index";
 
 const API_URL = "http://localhost:3000/api/user/";
 
 class AuthService {
   login(user) {
-    console.log("test authservicejs");
     return axios
       .post(API_URL + "login", {
         email: user.email,
         password: user.password,
       })
       .then((response) => {
-        if (response.data.accessToken) {
-          localStorage.setItem("user", JSON.stringify(response.data));
+        if (response.data.token) {
+          localStorage.setItem("user", JSON.stringify(response.data.token));
+          store.commit("saveUserId", response.data.userId);
         }
-
         return response.data;
       });
   }
