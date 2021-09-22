@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../../config_axios";
 import store from "../store/index";
 
 const API_URL = "http://localhost:3000/api/user/";
@@ -12,7 +12,7 @@ class AuthService {
       })
       .then((response) => {
         if (response.data.token) {
-          localStorage.setItem("user", JSON.stringify(response.data.token));
+          localStorage.setItem("token", JSON.stringify(response.data.token));
           store.commit("saveUserId", response.data.userId);
         }
         return response.data;
@@ -20,7 +20,7 @@ class AuthService {
   }
 
   logout() {
-    localStorage.removeItem("user");
+    localStorage.removeItem("token");
   }
 
   register(user) {

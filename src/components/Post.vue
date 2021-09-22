@@ -1,49 +1,56 @@
 <template>
   <div class="main-container bg-light">
-    <textarea
-      v-model="message"
-      name="post-textarea"
-      id="textarea"
-      placeholder="Partager quelque chose qui vous tiens à coeur !"
-    ></textarea>
-    <button @click="postPublication" class="btn btn-post publier">
-      Publier
-    </button>
+    <form @submit.prevent="postAPubli">
+      <textarea
+        v-model="message"
+        name="post-textarea"
+        id="textarea"
+        placeholder="Partager quelque chose qui vous tiens à coeur !"
+      ></textarea>
+      <input type="file" accept="image/*" @change="onFileChange" ref="file" />
+      <button @click="removeImage">Remove image</button>
+      <button class="btn btn-post publier">Publier</button>
+    </form>
   </div>
 </template>
 
 
 <script>
-import PubliService from "../services/PubliService";
-
 export default {
   name: "Post",
 
   data() {
     return {
       message: "",
+      image: "",
     };
   },
   methods: {
-    postPublication() {
-      const data = {
-        id_user: this.$store.state.user_id,
-        content: this.message,
+    postAPubli() {
+      const formData = new FormData();
+      formData.append("content", this.message);
+      formData.append("image", this.image);
+      formData.append("id_user", this.$store.state.user_id);
+      this.$store.dispatch("post/post", formData);
+    },
+    onFileChange(e) {
+      this.image = e.target.files[0];
+    },
+    createImage(file) {
+      var reader = new FileReader();
+      reader.onload = (e) => {
+        this.image = e.target.result;
+        this.$refs.file.value = "";
       };
-      console.log(data);
-      PubliService.create(data)
-        .then((response) => {
-          console.log(response);
-          this.message = "";
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+      reader.readAsDataURL(file);
+    },
+    removeImage() {
+      this.image = "";
     },
   },
 };
 </script>
- 
+
 <style>
 @import "../assets/styles/style.css";
 

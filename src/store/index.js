@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 import { auth } from "./auth.module";
+import { post } from "./post.module";
 
 Vue.use(Vuex);
 
@@ -26,6 +27,7 @@ const store = new Vuex.Store({
   actions: {},
   modules: {
     auth,
+    post,
   },
 });
 export default store;
