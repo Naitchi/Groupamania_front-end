@@ -1,6 +1,6 @@
 import PostService from "../services/post.service";
 
-const initialState = { posts: [] };
+let initialState = { posts: [] };
 
 export const post = {
   namespaced: true,
@@ -19,9 +19,10 @@ export const post = {
         }
       );
     },
-    delete(idPost) {
+    delete({ commit }, idPost) {
       return PostService.delete(idPost).then(
         (idPost) => {
+          commit("deletePost", idPost);
           return Promise.resolve(idPost);
         },
         (error) => {
@@ -33,6 +34,11 @@ export const post = {
   mutations: {
     addPost(state, post) {
       state.posts.push(post);
+      console.log("Ajout d'un post :" + state.posts);
+    },
+    deletePost(state, idPost) {
+      state.posts = state.posts.filter((post) => post.id_publication != idPost);
+      console.log("suppression d'un post :" + state.posts);
     },
   },
 };
