@@ -1,14 +1,17 @@
 <template>
   <div class="main-container bg-light">
-    <form @submit.prevent="postAPubli">
+    <form class="formpost" @submit.prevent="postAPubli">
+      <div class="imgPost">
+        <input type="file" accept="image/*" @change="onFileChange" ref="file" />
+        <button @click="removeImage">Remove image</button>
+      </div>
       <textarea
         v-model="message"
         name="post-textarea"
         id="textarea"
         placeholder="Partager quelque chose qui vous tiens à coeur !"
       ></textarea>
-      <input type="file" accept="image/*" @change="onFileChange" ref="file" />
-      <button @click="removeImage">Remove image</button>
+
       <button class="btn btn-post publier">Publier</button>
     </form>
   </div>
@@ -65,8 +68,8 @@ export default {
 
 .publier {
   position: relative;
-  top: -51px;
-  right: -244px;
+  top: -31px;
+  right: 82px;
 }
 
 .btn-post {
@@ -78,5 +81,13 @@ export default {
 
 #textarea:focus-visible {
   outline: 0 !important;
+}
+
+.formpost {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 </style>

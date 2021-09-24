@@ -11,7 +11,6 @@ class PostService {
     });
   }
 
-  //voir comment mettre le token d'auth
 
   delete(idPost) {
     return axios.delete(API_URL + idPost + "/delete");
