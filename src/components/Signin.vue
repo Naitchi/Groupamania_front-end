@@ -68,13 +68,11 @@ export default {
     handleLogin() {
       this.loading = true;
       this.$validator.validateAll().then((isValid) => {
-        console.log(this.user.email);
         if (!isValid) {
           this.loading = false;
           return;
         }
         if (this.user.email && this.user.password) {
-          console.log(this.user);
           this.$store.dispatch("auth/login", this.user).then(
             () => {
               this.$router.push("/main");

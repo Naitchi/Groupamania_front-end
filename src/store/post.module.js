@@ -1,3 +1,4 @@
+import postService from "../services/post.service";
 import PostService from "../services/post.service";
 
 let initialState = { posts: [] };
@@ -13,6 +14,17 @@ export const post = {
         (formData) => {
           commit("addPost", formData);
           return Promise.resolve(formData);
+        },
+        (error) => {
+          return Promise.reject(error);
+        }
+      );
+    },
+    getPosts({ commit }) {
+      return PostService.getPosts().then(
+        (posts) => {
+          commit("addPosts", posts);
+          return Promise.resolve(posts);
         },
         (error) => {
           return Promise.reject(error);
@@ -39,6 +51,10 @@ export const post = {
     deletePost(state, idPost) {
       state.posts = state.posts.filter((post) => post.id_publication != idPost);
       console.log("suppression d'un post :" + state.posts);
+    },
+    addPosts(state, posts) {
+      state.posts = posts;
+      console.log("Récupération des posts dans le Store :" + state.posts);
     },
   },
 };

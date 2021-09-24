@@ -1,5 +1,4 @@
 import axios from "../../config_axios";
-//import store from "../store/index";
 
 const API_URL = "http://localhost:3000/api/publication/";
 
@@ -11,6 +10,11 @@ class PostService {
     });
   }
 
+  getPosts() {
+    return axios.get(API_URL).then((response) => {
+      return response.data;
+    });
+  }
 
   delete(idPost) {
     return axios.delete(API_URL + idPost + "/delete");

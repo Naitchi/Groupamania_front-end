@@ -37,18 +37,33 @@
       <button class="btn comment"><i class="far fa-comment fa-lg"></i></button>
       <button class="btn share"><i class="fas fa-share fa-lg"></i></button>
     </div>
+    <div v-if="message" class="alert alert-danger" role="alert">
+      {{ message }}
+    </div>
   </div>
 </template>
 
-
 <script>
-
 export default {
   name: "Publication",
-
-  data: () => ({
-    show: false,
-  }),
+  created() {
+    this.$store.dispatch("post/getPosts").then(
+      () => {
+        console.log("posts récupérer");
+      },
+      (error) => {
+        this.message =
+          (error.response && error.response.data) ||
+          error.message ||
+          error.toString();
+      }
+    );
+  },
+  data() {
+    return {
+      message: "",
+    };
+  },
   methods: {},
 };
 </script>
