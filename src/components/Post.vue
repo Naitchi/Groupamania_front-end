@@ -1,5 +1,5 @@
 <template>
-  <div class="main-container bg-light">
+  <div class="post-container bg-light">
     <form class="formpost" @submit.prevent="postAPubli">
       <div class="imgPost">
         <input type="file" accept="image/*" @change="onFileChange" ref="file" />
@@ -56,6 +56,13 @@ export default {
 
 <style>
 @import "../assets/styles/style.css";
+.post-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
 #textarea {
   width: 600px;
@@ -68,8 +75,8 @@ export default {
 
 .publier {
   position: relative;
-  top: -31px;
-  right: 82px;
+  top: -54px;
+  right: -258px;
 }
 
 .btn-post {
@@ -86,8 +93,9 @@ export default {
 .formpost {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
+  height: 220px;
 }
 </style>
