@@ -25,6 +25,18 @@ export const auth = {
       AuthService.logout();
       commit("logout");
     },
+    me({ commit }) {
+      return AuthService.me().then(
+        (userId) => {
+          commit("commitMe", userId);
+          return Promise.resolve(userId);
+        },
+        (error) => {
+          commit("loginFailure");
+          return Promise.reject(error);
+        }
+      );
+    },
     register({ commit }, user) {
       return AuthService.register(user).then(
         (response) => {
@@ -39,9 +51,13 @@ export const auth = {
     },
   },
   mutations: {
+    commitMe(state, me) {
+      state.userId = me;
+    },
     loginSuccess(state, user) {
       state.status.loggedIn = true;
       state.user = user;
+      state.user.userId = user.userId;
     },
     loginFailure(state) {
       state.status.loggedIn = false;

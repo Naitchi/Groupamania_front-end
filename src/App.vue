@@ -9,6 +9,19 @@ import EventBus from "./EventBus";
 export default {
   created() {
     EventBus.$on("event", this.mafonction);
+    this.$store.dispatch("auth/me").then(
+      () => {
+        console.log("userId récupérer");
+        console.log(this.$store.state.auth.user);
+      },
+      (error) => {
+        console.log(error);
+        if (this.$store.state.auth.user == null) {
+          this.$store.dispatch("auth/logout");
+          this.$router.push("/login");
+        }
+      }
+    );
   },
   methods: {
     mafonction() {

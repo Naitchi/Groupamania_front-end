@@ -1,5 +1,4 @@
 import axios from "../../config_axios";
-import store from "../store/index";
 
 const API_URL = "http://localhost:3000/api/user/";
 
@@ -12,11 +11,16 @@ class AuthService {
       })
       .then((response) => {
         if (response.data.token) {
-          localStorage.setItem("token", JSON.stringify(response.data.token));
-          store.commit("saveUserId", response.data.userId);
+          localStorage.setItem("token", response.data.token);
         }
         return response.data;
       });
+  }
+
+  me() {
+    return axios.get(API_URL + "me").then((response) => {
+      return response.data;
+    });
   }
 
   logout() {
