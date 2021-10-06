@@ -11,11 +11,12 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/vue-fontawesome": "^2.0.2",
+    "@popperjs/core": "^2.10.2",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.2",
-    "core-js": "^3.6.5",
+    "core-js": "^3.18.1",
+    "cors": "^2.8.5",
     "jquery": "^3.6.0",
-    "popper.js": "^1.16.1",
     "vee-validate": "^2.2.15",
     "vue": "2.6.12",
     "vue-router": "^3.5.2",
@@ -44,7 +45,9 @@
     "parserOptions": {
       "parser": "babel-eslint"
     },
-    "rules": {}
+    "rules": {
+      "no-console": "off"
+    }
   },
   "browserslist": [
     "> 1%",

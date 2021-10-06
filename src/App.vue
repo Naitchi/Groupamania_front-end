@@ -7,19 +7,17 @@
 <script>
 import EventBus from "./EventBus";
 export default {
-  created() {
+  mounted() {
     EventBus.$on("event", this.mafonction);
     this.$store.dispatch("auth/me").then(
       () => {
         console.log("userId récupérer");
-        console.log(this.$store.state.auth.user);
       },
       (error) => {
         console.log(error);
-        if (this.$store.state.auth.user == null) {
-          this.$store.dispatch("auth/logout");
-          this.$router.push("/login");
-        }
+        console.log("redirection vers le login");
+        this.$store.dispatch("auth/logout");
+        this.$router.push("/login");
       }
     );
   },
@@ -29,7 +27,9 @@ export default {
     },
   },
   name: "App",
-  data: () => ({}),
+  data() {
+    return {};
+  },
 };
 </script>
 

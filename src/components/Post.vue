@@ -33,7 +33,7 @@ export default {
       const formData = new FormData();
       formData.append("content", this.message);
       formData.append("image", this.image);
-      formData.append("id_user", this.$store.state.user_id);
+      formData.append("id_user", this.$store.state.auth.userId);
       this.$store.dispatch("post/post", formData);
     },
     onFileChange(e) {
