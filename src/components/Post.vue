@@ -1,6 +1,6 @@
 <template>
   <div class="post-container bg-light">
-    <form class="formpost" @submit.prevent="postAPubli">
+    <div class="formpost">
       <div class="imgPost">
         <input type="file" accept="image/*" @change="onFileChange" ref="file" />
         <button @click="removeImage">Remove image</button>
@@ -12,8 +12,8 @@
         placeholder="Partager quelque chose qui vous tiens à coeur !"
       ></textarea>
 
-      <button class="btn btn-post publier">Publier</button>
-    </form>
+      <button @click="postAPubli" class="btn btn-post publier">Publier</button>
+    </div>
   </div>
 </template>
 
@@ -34,18 +34,14 @@ export default {
       formData.append("content", this.message);
       formData.append("image", this.image);
       formData.append("id_user", this.$store.state.auth.userId);
-      this.$store.dispatch("post/post", formData);
+      this.$store.dispatch("post/post", formData).then(() => {
+        this.message = "";
+        this.$refs.file.value = "";
+        this.image = "";
+      });
     },
     onFileChange(e) {
       this.image = e.target.files[0];
-    },
-    createImage(file) {
-      var reader = new FileReader();
-      reader.onload = (e) => {
-        this.image = e.target.result;
-        this.$refs.file.value = "";
-      };
-      reader.readAsDataURL(file);
     },
     removeImage() {
       this.image = "";

@@ -7,11 +7,11 @@
 <script>
 import EventBus from "./EventBus";
 export default {
-  mounted() {
+  async mounted() {
     EventBus.$on("event", this.mafonction);
-    this.$store.dispatch("auth/me").then(
+    await this.$store.dispatch("auth/me").then(
       () => {
-        console.log("userId récupérer");
+        console.log("userId récupérer pour le /me");
       },
       (error) => {
         console.log(error);

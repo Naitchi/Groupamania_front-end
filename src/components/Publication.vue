@@ -7,16 +7,19 @@
     >
       <div class="card">
         <div class="card-top">
-          <img class="pp" src="../assets/pp.jpg" alt="photo de profil" />
+          <img class="pp" :src="post.profilepicture" alt="photo de profil" />
           <div class="card-info">
             <div class="card-contener">
-              <h3 class="profil-name">Benjamin Clairotte</h3>
+              <router-link
+                :to="{ path: 'user', query: { id: post.user_id_user } }"
+              >
+                <h3 class="profil-name">{{ post.nickname }}</h3></router-link
+              >
               <h4 class="publi-moment">
                 {{
                   new Intl.DateTimeFormat("fr-FR", {
                     hour: "numeric",
                     minute: "numeric",
-                    second: "numeric",
                     weekday: "long",
                     year: "numeric",
                     month: "long",
@@ -28,12 +31,15 @@
             <div class="div-option">
               <button
                 type="button"
-                v-on:click="show = !show"
+                v-on:click="openOption(post.id_publication)"
                 class="btn btn-outline-secondary option"
               >
                 <i class="fas fa-ellipsis-v"></i>
               </button>
-              <div v-if="show" class="dropdown-content options">
+              <div
+                v-if="selected_id === post.id_publication"
+                class="dropdown-content options"
+              >
                 <button class="btn btn-secondary">supprimer</button>
                 <div class="separtion"></div>
                 <button class="btn btn-secondary">modifier</button>
@@ -86,9 +92,18 @@ export default {
     return {
       show: false,
       message: "",
+      selected_id: null,
     };
   },
-  methods: {},
+  methods: {
+    openOption(id_publication) {
+      if (this.selected_id === id_publication) {
+        this.selected_id = null;
+      } else {
+        this.selected_id = id_publication;
+      }
+    },
+  },
 };
 </script>
  

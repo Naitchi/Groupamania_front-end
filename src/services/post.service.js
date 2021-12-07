@@ -4,7 +4,6 @@ const API_URL = "http://localhost:3000/api/publication/";
 
 class PostService {
   post(formData) {
-    console.log(formData);
     return axios.post(API_URL, formData).then(
       (response) => {
         return response.data;
@@ -17,6 +16,17 @@ class PostService {
 
   getPosts() {
     return axios.get(API_URL).then(
+      (response) => {
+        return response.data;
+      },
+      (error) => {
+        return error;
+      }
+    );
+  }
+
+  getPostsFromUser(userId) {
+    return axios.get(API_URL + userId).then(
       (response) => {
         return response.data;
       },

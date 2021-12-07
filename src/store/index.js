@@ -3,17 +3,13 @@ import Vuex from "vuex";
 
 import { auth } from "./auth.module";
 import { post } from "./post.module";
+import { user } from "./user.module";
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
     notifShow: false,
-  },
-  getters: {
-    getNotifValue: (state) => {
-      return state.notifShow;
-    },
   },
   mutations: {
     showChange(state) {
@@ -24,6 +20,7 @@ const store = new Vuex.Store({
   modules: {
     auth,
     post,
+    user,
   },
 });
 export default store;

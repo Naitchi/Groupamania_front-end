@@ -28,8 +28,6 @@ class AuthService {
   }
 
   register(user) {
-    console.log(JSON.stringify(user));
-    console.log(user.nickname);
     return axios.post(API_URL + "signup", {
       nickname: user.nickname,
       email: user.email,
