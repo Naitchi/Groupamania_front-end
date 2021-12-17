@@ -5,7 +5,7 @@
       :src="getUser.profilepicture"
       alt="Photo de profile de l'utilisateur !"
     />
-    <a v-if="disabled == 0" href="#modify-pp">chnager la pp</a>
+    <a v-if="disabled == 0" href="#modify-pp">Changer de photo de profil</a>
     <label for="nom">Pseudo :</label>
     <input
       v-model="user.nickname"
@@ -184,8 +184,10 @@ export default {
     },
     modifyUser() {
       const formData = FormData();
-      //voir si y'a qlqc dans chaque input
-      formData.append(); //faire boucle de user
+      formData.append();
+
+      
+
       this.$store.dispatch("user/modifyUser", formData);
     },
     sleep(ms) {

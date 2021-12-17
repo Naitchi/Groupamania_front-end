@@ -1,18 +1,18 @@
 <template>
   <div class="main-container bg-light">
     <Post />
-    <Publication />
+    <Publications />
   </div>
 </template>
 
 
 <script>
-import Publication from "./Publication";
+import Publications from "./Publications";
 import Post from "./Post.vue";
 
 export default {
   name: "News",
-  components: { Publication, Post },
+  components: { Publications, Post },
 
   data: () => ({}),
 };

@@ -69,7 +69,6 @@ export const user = {
   },
   getters: {
     getUser: (state) => {
-      console.log(state.userProfile);
       return state.userProfile;
     },
   },

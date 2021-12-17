@@ -1,39 +1,39 @@
 <template>
   <div>
-    <div id="publication" v-if="getterPost">
+    <div
+      id="publication"
+      v-for="post in this.$store.state.post.posts"
+      :key="post.id_publication"
+    >
       <div class="card">
         <div class="card-top">
-          <img
-            class="pp"
-            :src="getterPost.profilepicture"
-            alt="photo de profil"
-          />
+          <img class="pp" :src="post.profilepicture" alt="photo de profil" />
           <div class="card-info">
             <div class="card-contener">
               <router-link
-                :to="{ path: 'user', query: { id: getterPost.user_id_user } }"
+                :to="{ path: 'user', query: { id: post.user_id_user } }"
               >
-                <h3 class="profil-name">{{ getterPost.nickname }}</h3>
+                <h3 class="profil-name">{{ post.nickname }}</h3>
               </router-link>
               <h4 class="publi-moment">
-                {{ dateForPublications(getterPost.date_add) }}
+                {{ dateForPublications(post.date_add) }}
               </h4>
             </div>
             <div class="div-option">
               <button
                 type="button"
-                v-on:click="openOption(getterPost.id_publication)"
+                v-on:click="openOption(post.id_publication)"
                 class="btn btn-outline-secondary option"
               >
                 <i class="fas fa-ellipsis-v"></i>
               </button>
               <div
-                v-if="selected_id === getterPost.id_publication"
+                v-if="selected_id === post.id_publication"
                 class="dropdown-content options"
               >
                 <button
-                  @click="deletePost(getterPost.id_publication)"
-                  v-if="ifAuteur(getterPost.id_user)"
+                  @click="deletePost(post.id_publication)"
+                  v-if="ifAuteur(post.id_user)"
                   class="btn btn-secondary"
                 >
                   supprimer
@@ -42,11 +42,11 @@
                 <router-link
                   :to="{
                     path: 'modifyPublication',
-                    query: { id: getterPost.id_publication },
+                    query: { id: post.id_publication },
                   }"
                 >
                   <button
-                    v-if="ifAuteur(getterPost.user_id_user)"
+                    v-if="ifAuteur(post.id_user)"
                     class="btn btn-secondary"
                   >
                     modifier
@@ -58,18 +58,16 @@
             </div>
           </div>
         </div>
-        <div v-if="getterPost.image">
-          <img
-            v-bind:src="getterPost.image"
-            class="card-img-top"
-            alt="random"
-          />
-        </div>
-        <div class="card-body">
-          <p class="card-text">
-            {{ getterPost.content }}
-          </p>
-        </div>
+        <router-link :to="{ path: 'post', query: { id: post.id_publication } }">
+          <div v-if="post.image">
+            <img v-bind:src="post.image" class="card-img-top" alt="random" />
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              {{ post.content }}
+            </p>
+          </div>
+        </router-link>
         <div class="card-bottom">
           <button class="btn like"><i class="fas fa-heart fa-lg"></i></button>
           <button class="btn comment">
@@ -88,16 +86,12 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
 export default {
-  name: "Publication",
-  mounted() {
-    this.id = this.$route.query.id;
-    console.log(this.id);
-    this.$store.dispatch("post/getPost", this.id).then(
+  name: "Publications",
+  created() {
+    this.$store.dispatch("post/getPosts").then(
       () => {
-        console.log("post récupérer dans le front");
+        console.log("posts récupérer dans le front");
       },
       (error) => {
         this.message =
@@ -140,12 +134,9 @@ export default {
       }).format(new Date(date));
     },
   },
-  computed: {
-    ...mapGetters("post", ["getterPost"]),
-  },
 };
 </script>
-
+ 
 <style>
 @import "../assets/styles/style.css";
 </style>

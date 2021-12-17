@@ -13,7 +13,16 @@ class PostService {
       }
     );
   }
-
+  getPost(id) {
+    return axios.get(API_URL + id).then(
+      (response) => {
+        return response.data;
+      },
+      (error) => {
+        return error;
+      }
+    );
+  }
   getPosts() {
     return axios.get(API_URL).then(
       (response) => {
@@ -24,7 +33,6 @@ class PostService {
       }
     );
   }
-
   getPostsFromUser(userId) {
     return axios.get(API_URL + userId).then(
       (response) => {
@@ -35,9 +43,28 @@ class PostService {
       }
     );
   }
-
   delete(idPost) {
     return axios.delete(API_URL + idPost + "/delete").then(
+      (response) => {
+        return response.data;
+      },
+      (error) => {
+        return error;
+      }
+    );
+  }
+  modifyPost(formData) {
+    return axios.put(API_URL + "modifyPost", formData).then(
+      (response) => {
+        return response.data;
+      },
+      (error) => {
+        return error;
+      }
+    );
+  }
+  modifyPostContent(data) {
+    return axios.put(API_URL + "modifyPostContent", data).then(
       (response) => {
         return response.data;
       },
