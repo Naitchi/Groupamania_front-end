@@ -183,12 +183,23 @@ export default {
       }
     },
     modifyUser() {
-      const formData = FormData();
-      formData.append();
-
-      
-
-      this.$store.dispatch("user/modifyUser", formData);
+      const data = {
+        nickname: this.user.nickname,
+        email: this.user.email,
+        phone: this.user.phone,
+        birthday: new Intl.DateTimeFormat("ko-KR", {
+          year: "numeric",
+          day: "numeric",
+          month: "numeric",
+        })
+          .format(new Date(this.user.birthday))
+          .replace(" ", "")
+          .replace(" ", ""),
+        description: this.user.description,
+        id_user: this.user.id_user,
+      };
+      this.$store.dispatch("user/modifyUser", data);
+      this.disabled = 1;
     },
     sleep(ms) {
       return new Promise((resolve) => setTimeout(resolve, ms));
@@ -234,7 +245,7 @@ export default {
 };
 </script>
  
-<style>
+<style >
 @import "../assets/styles/style.css";
 
 #profil {

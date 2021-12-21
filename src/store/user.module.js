@@ -18,10 +18,10 @@ export const user = {
         }
       );
     },
-    modifyUser({ commit }, formData, userId) {
-      return UserService.modifyUser(formData, userId).then(
-        (user) => {
-          commit("commitUser", user);
+    modifyUser({ commit }, data) {
+      return UserService.modifyUser(data).then(
+        (response) => {
+          commit("commitmodifyUser", response);
           return Promise.resolve(user);
         },
         (error) => {
@@ -62,6 +62,10 @@ export const user = {
       console.log("Mot de passe modifié !");
       console.log(response);
     },
+    commitmodifyUser(response) {
+      console.log(response);
+    },
+
     commitNewPP(state, response) {
       console.log(response.message);
       state.userProfile.profilepicture = response.image;

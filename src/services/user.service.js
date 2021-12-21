@@ -9,8 +9,8 @@ class UserService {
     });
   }
 
-  modifyUser(formData, user_id) {
-    return axios.put(API_URL + user_id, formData).then(
+  modifyUser(data) {
+    return axios.put(API_URL + "modifyUser", data).then(
       (response) => {
         return response.data;
       },
