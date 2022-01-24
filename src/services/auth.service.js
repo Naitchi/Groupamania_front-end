@@ -36,6 +36,16 @@ class AuthService {
       birthday: user.birthday,
     });
   }
+  deleteUser(id) {
+    return axios.delete(API_URL + id).then(
+      (response) => {
+        return response.data;
+      },
+      (error) => {
+        return error;
+      }
+    );
+  }
 }
 
 export default new AuthService();

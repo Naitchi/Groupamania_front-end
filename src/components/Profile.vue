@@ -6,6 +6,11 @@
       :src="getUser.profilepicture"
       alt="Photo de profile de l'utilisateur !"
     />
+    <div v-if="getUser">
+      <a v-if="ifAuteur(getUser.id_user)" href="#delete-user"
+        >SUPPRIMER LE COMPTE</a
+      >
+    </div>
     <a v-if="disabled == 0" href="#modify-pp">Changer de photo de profil</a>
     <label for="nom">Pseudo :</label>
     <input
@@ -129,6 +134,32 @@
 
       <a href="#!" class="outside-trigger"></a>
     </div>
+
+    <!-- Modal DeleteUser -->
+    <div class="modal-wrapper" id="delete-user">
+      <div class="modal-body card">
+        <div class="modal-header">
+          <h2 class="heading">
+            Êtes-vous sûr de vouloir supprimer le compte ?
+          </h2>
+          <a
+            href="#!"
+            role="button"
+            class="close"
+            aria-label="close this modal"
+          >
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z"
+              />
+            </svg>
+          </a>
+        </div>
+        <button @click="deleteUser(getUser.id_user)">Oui</button>
+        <a href="#!">Non</a>
+      </div>
+      <a href="#!" class="outside-trigger"></a>
+    </div>
   </div>
 </template>
 
@@ -163,6 +194,25 @@ export default {
     };
   },
   methods: {
+    deleteUser(id) {
+      this.$store.dispatch("auth/deleteUser", id).then(
+        () => {
+          console.log("utilisateur bien supprimé.");
+          this.$router.push("/");
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
+    ifAuteur(id) {
+      if (
+        id === this.$store.state.auth.userId ||
+        this.$store.state.user.adminMode === true
+      ) {
+        return true;
+      }
+    },
     modifyPP() {
       const formData = new FormData();
       formData.append("image", this.newPP);
@@ -319,6 +369,21 @@ svg {
 }
 
 #modify-pp:target > .modal-body {
+  opacity: 1;
+  transform: translateY(1);
+}
+
+#delete-user {
+  opacity: 0;
+  visibility: hidden;
+}
+
+#delete-user:target {
+  opacity: 1;
+  visibility: visible;
+}
+
+#delete-user:target > .modal-body {
   opacity: 1;
   transform: translateY(1);
 }

@@ -42,15 +42,5 @@ class UserService {
     );
   }
 
-  deleteUser(id) {
-    return axios.delete(API_URL + id).then(
-      (response) => {
-        return response.data;
-      },
-      (error) => {
-        return error;
-      }
-    );
-  }
 }
 export default new UserService();

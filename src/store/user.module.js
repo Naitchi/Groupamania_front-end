@@ -51,17 +51,6 @@ export const user = {
         }
       );
     },
-    deleteUser({ commit }, id) {
-      return UserService.deleteUser(id).then(
-        (response) => {
-          commit("commitNewPP", response); //changer le commit
-          return Promise.resolve(response);
-        },
-        (error) => {
-          return Promise.reject(error);
-        }
-      );
-    },
   },
   mutations: {
     commitUser(state, user) {

@@ -49,6 +49,17 @@ export const auth = {
         }
       );
     },
+    deleteUser({ commit }, id) {
+      return AuthService.deleteUser(id).then(
+        (response) => {
+          commit("logout"); //changer le commit
+          return Promise.resolve(response);
+        },
+        (error) => {
+          return Promise.reject(error);
+        }
+      );
+    },
   },
   mutations: {
     commitMe(state, me) {
