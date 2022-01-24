@@ -11,7 +11,7 @@ export default {
     EventBus.$on("event", this.mafonction);
     await this.$store.dispatch("auth/me").then(
       () => {
-        console.log("userId récupérer pour le /me");
+        console.log("userId récupéré ");
       },
       (error) => {
         console.log(error);

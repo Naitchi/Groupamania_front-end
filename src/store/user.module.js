@@ -1,6 +1,6 @@
 import UserService from "../services/user.service";
 
-const initialState = { userProfile: null };
+const initialState = { userProfile: null, adminMode: false };
 
 export const user = {
   namespaced: true,
@@ -51,6 +51,17 @@ export const user = {
         }
       );
     },
+    deleteUser({ commit }, id) {
+      return UserService.deleteUser(id).then(
+        (response) => {
+          commit("commitNewPP", response); //changer le commit
+          return Promise.resolve(response);
+        },
+        (error) => {
+          return Promise.reject(error);
+        }
+      );
+    },
   },
   mutations: {
     commitUser(state, user) {
@@ -65,7 +76,6 @@ export const user = {
     commitmodifyUser(response) {
       console.log(response);
     },
-
     commitNewPP(state, response) {
       console.log(response.message);
       state.userProfile.profilepicture = response.image;

@@ -1,8 +1,8 @@
 import Carousel from "./components/Carousel";
 import Main from "./view/Main";
-import Profile from "./components/Profile";
-import Publication from "./components/Publication";
-import Modify_Publication from "./components/Modify_Publication";
+import Profile from "./view/Profile";
+import Publication from "./view/Publication";
+import Modify_Publication from "./view/Modify_Publication";
 
 const routes = [
   {

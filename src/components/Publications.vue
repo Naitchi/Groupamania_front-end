@@ -1,97 +1,24 @@
 <template>
   <div>
-    <div
-      id="publication"
+    <Publication
       v-for="post in this.$store.state.post.posts"
-      :key="post.id_publication"
-    >
-      <div class="card">
-        <div class="card-top">
-          <img class="pp" :src="post.profilepicture" alt="photo de profil" />
-          <div class="card-info">
-            <div class="card-contener">
-              <router-link
-                :to="{ path: 'user', query: { id: post.user_id_user } }"
-              >
-                <h3 class="profil-name">{{ post.nickname }}</h3>
-              </router-link>
-              <h4 class="publi-moment">
-                {{ dateForPublications(post.date_add) }}
-              </h4>
-            </div>
-            <div class="div-option">
-              <button
-                type="button"
-                v-on:click="openOption(post.id_publication)"
-                class="btn btn-outline-secondary option"
-              >
-                <i class="fas fa-ellipsis-v"></i>
-              </button>
-              <div
-                v-if="selected_id === post.id_publication"
-                class="dropdown-content options"
-              >
-                <button
-                  @click="deletePost(post.id_publication)"
-                  v-if="ifAuteur(post.id_user)"
-                  class="btn btn-secondary"
-                >
-                  supprimer
-                </button>
-                <div class="separtion"></div>
-                <router-link
-                  :to="{
-                    path: 'modifyPublication',
-                    query: { id: post.id_publication },
-                  }"
-                >
-                  <button
-                    v-if="ifAuteur(post.id_user)"
-                    class="btn btn-secondary"
-                  >
-                    modifier
-                  </button>
-                </router-link>
-                <div class="separation"></div>
-                <button class="btn btn-secondary">signaler</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <router-link :to="{ path: 'post', query: { id: post.id_publication } }">
-          <div v-if="post.image">
-            <img v-bind:src="post.image" class="card-img-top" alt="random" />
-          </div>
-          <div class="card-body">
-            <p class="card-text">
-              {{ post.content }}
-            </p>
-          </div>
-        </router-link>
-        <div class="card-bottom">
-          <button class="btn like"><i class="fas fa-heart fa-lg"></i></button>
-          <button class="btn comment">
-            <i class="far fa-comment fa-lg"></i>
-          </button>
-          <button class="btn share">
-            <i class="fas fa-share fa-lg"></i>
-          </button>
-        </div>
-        <div v-if="message" class="alert alert-danger" role="alert">
-          {{ message }}
-        </div>
-      </div>
-    </div>
+      v-bind:key="post.id_publication"
+      v-bind:post="post"
+    ></Publication>
   </div>
 </template>
 
 <script>
+import Publication from "./Publication.vue";
+
 export default {
+  components: { Publication },
   name: "Publications",
-  created() {
+  mounted() {
     this.$store.dispatch("post/getPosts").then(
       () => {
         console.log("posts récupérer dans le front");
+        this.$store.state.post.post = null;
       },
       (error) => {
         this.message =
@@ -104,7 +31,6 @@ export default {
   data() {
     return {
       message: "",
-      selected_id: null,
     };
   },
   methods: {
@@ -138,5 +64,4 @@ export default {
 </script>
  
 <style>
-@import "../assets/styles/style.css";
 </style>

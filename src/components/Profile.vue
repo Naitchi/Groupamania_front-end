@@ -2,6 +2,7 @@
   <div id="profil">
     <div class="banniere"></div>
     <img
+      v-if="getUser"
       :src="getUser.profilepicture"
       alt="Photo de profile de l'utilisateur !"
     />
@@ -34,7 +35,9 @@
     <label for="tel">Numéro de Téléphone :</label>
     <input v-model="user.phone" id="tel" type="tel" :disabled="disabled == 1" />
     <label for="birthday">Date d'anniversaire :</label>
-    <p v-if="disabled == 1">{{ dateForProfile(user.birthday) }}</p>
+    <div class="test" v-if="getUser">
+      <p v-if="disabled == 1">{{ dateForProfile(user.birthday) }}</p>
+    </div>
     <input
       v-model="user.birthday"
       id="birthday"
@@ -135,7 +138,6 @@ import { mapGetters } from "vuex";
 export default {
   name: "Profile",
   async mounted() {
-    await this.sleep(50);
     this.id = this.$route.query.id;
     this.$store.dispatch("user/setUser", this.id).then(
       (user) => {
@@ -205,11 +207,13 @@ export default {
       return new Promise((resolve) => setTimeout(resolve, ms));
     },
     dateForProfile(date) {
-      return new Intl.DateTimeFormat("fr-FR", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      }).format(new Date(date));
+      if (date) {
+        return new Intl.DateTimeFormat("fr-FR", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }).format(new Date(date));
+      }
     },
     resetUser() {
       this.user = { ...this.$store.state.user.userProfile };
@@ -239,8 +243,27 @@ export default {
       );
     },
   },
+  watch: {
+    urlID: function () {
+      this.id = this.$route.query.id;
+      this.$store.dispatch("user/setUser", this.id).then(
+        (user) => {
+          this.user = { ...user };
+        },
+        (error) => {
+          this.message =
+            (error.response && error.response.data) ||
+            error.message ||
+            error.toString();
+        }
+      );
+    },
+  },
   computed: {
     ...mapGetters("user", ["getUser"]),
+    urlID: function () {
+      return this.$route.query.id;
+    },
   },
 };
 </script>

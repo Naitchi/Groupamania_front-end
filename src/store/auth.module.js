@@ -2,8 +2,8 @@ import AuthService from "../services/auth.service";
 
 const user = localStorage.getItem("token");
 const initialState = user
-  ? { status: { loggedIn: true }, user }
-  : { status: { loggedIn: false }, user: null };
+  ? { status: { loggedIn: true, admin: 0 }, user, userId: undefined }
+  : { status: { loggedIn: false, admin: 0 }, user: null, userId: undefined };
 
 export const auth = {
   namespaced: true,
@@ -27,9 +27,9 @@ export const auth = {
     },
     me({ commit }) {
       return AuthService.me().then(
-        (user_Id) => {
-          commit("commitMe", user_Id.user_Id.userId);
-          return Promise.resolve(user_Id.user_Id.userId);
+        (me) => {
+          commit("commitMe", me);
+          return Promise.resolve(me);
         },
         (error) => {
           commit("loginFailure");
@@ -52,9 +52,12 @@ export const auth = {
   },
   mutations: {
     commitMe(state, me) {
-      state.userId = me;
+      console.log(me);
+      state.userId = me.user_Id.userId;
+      state.status.admin = me.admin[0].admin;
     },
     loginSuccess(state, user) {
+      state.status.admin = user.admin;
       state.status.loggedIn = true;
       state.userId = user.userId;
     },
@@ -71,6 +74,14 @@ export const auth = {
     },
     registerFailure(state) {
       state.status.loggedIn = false;
+    },
+  },
+  getters: {
+    getMe: (state) => {
+      return state.status.admin;
+    },
+    getMyId: (state) => {
+      return state.userId;
     },
   },
 };
