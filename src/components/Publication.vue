@@ -272,8 +272,11 @@ import { mapGetters } from "vuex";
 
 export default {
   name: "Publication",
-  mounted() {
+  async mounted() {
     this.id = this.$route.query.id;
+    await function () {
+      return this.$store.state.auth.userId;
+    };
     if (this.id !== undefined) {
       this.$store.dispatch("post/getPost", this.id).then(
         () => {
@@ -305,6 +308,7 @@ export default {
       (reacts) => {
         console.log(reacts);
         this.reacts = reacts.reacts;
+        console.log(this.$store.state.auth.userId);
         if (
           this.reacts.filter(
             (react) => react.user_id_user === this.$store.state.auth.userId
@@ -358,18 +362,18 @@ export default {
       }
     },
     dateForPublications(date) {
-      return new Intl.DateTimeFormat("fr-FR", {
-        hour: "numeric",
-        minute: "numeric",
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      }).format(new Date(date));
+      if (date) {
+        return new Intl.DateTimeFormat("fr-FR", {
+          hour: "numeric",
+          minute: "numeric",
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }).format(new Date(date));
+      }
     },
     postAComment(id) {
-      //revoir cette fonction (pas opti du tout)
-      this.id = this.$route.query.id;
       const data = {
         publication_id_publication: id,
         user_id_user: this.$store.state.auth.userId,
@@ -378,12 +382,15 @@ export default {
       console.log(data);
       this.$store.dispatch("comment/postComment", data).then(
         () => {
-          console.log("Commentaire publié !");
           this.$store
-            .dispatch("comment/getCommentsFromAPost", this.post.id_publication)
+            .dispatch(
+              "comment/getCommentsFromAPost",
+              data.publication_id_publication
+            )
             .then(
               (comments) => {
-                this.comments = comments;
+                this.comments = comments.comments;
+                console.log("Comments récupérer");
               },
               (error) => {
                 this.message =
@@ -400,45 +407,6 @@ export default {
             error.toString();
         }
       );
-      if (this.id !== undefined) {
-        this.$store.dispatch("post/getPost", this.id).then(
-          () => {
-            console.log("post récupérer dans le front");
-          },
-          (error) => {
-            this.message =
-              (error.response && error.response.data) ||
-              error.message ||
-              error.toString();
-          }
-        );
-        this.$store.dispatch("comment/getCommentsFromAPost", this.id).then(
-          (comments) => {
-            this.comments = comments.comments;
-            console.log("Comments récupérer");
-          },
-          (error) => {
-            this.message =
-              (error.response && error.response.data) ||
-              error.message ||
-              error.toString();
-          }
-        );
-      } else {
-        this.$store
-          .dispatch("comment/getCommentsFromAPost", this.post.id_publication)
-          .then(
-            (comments) => {
-              this.comments = comments.comments;
-            },
-            (error) => {
-              this.message =
-                (error.response && error.response.data) ||
-                error.message ||
-                error.toString();
-            }
-          );
-      }
       this.newComment = "";
     },
     addReact(id) {
@@ -452,10 +420,7 @@ export default {
         () => {
           console.log("Réaction ajouté !");
           this.$store
-            .dispatch(
-              "react/getReactsFromPublication",
-              this.post.id_publication
-            )
+            .dispatch("react/getReactsFromPublication", data.id_publication)
             .then(
               (reacts) => {
                 this.reacts = reacts.reacts;
