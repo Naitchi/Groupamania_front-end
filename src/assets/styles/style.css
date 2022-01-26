@@ -4,9 +4,10 @@
 }
 
 .color {
-  color: #fff !important;
-  background-color: #cc6666 !important;
-  border-color: #cc6666 !important;
+  color: #000000 !important;
+  background-color: #d47d7d !important;
+  border-color: #d47d7d !important;
+  font-weight: bold !important;
 }
 
 .bg-darkblue {
@@ -72,7 +73,7 @@ body {
 
 .publi-moment {
   font-size: 1rem;
-  color: grey;
+  color: #575757;
 }
 
 .card-contener {
@@ -116,7 +117,7 @@ body {
 }
 
 .liked {
-  color: #cc6666;
+  color: #d47d7d;
 }
 
 .fa-home {
@@ -167,7 +168,7 @@ body {
 }
 
 .notifbox {
-  background-color: #cc6666;
+  background-color: #d47d7d;
   position: absolute;
   width: 500px;
   height: 1635%;
@@ -182,7 +183,7 @@ body {
 
 .liaison {
   top: 71%;
-  background-color: #cc6666;
+  background-color: #d47d7d;
   position: absolute;
   width: 138px;
   left: 194px;
@@ -221,7 +222,7 @@ body {
 .titre {
   width: 1100px;
   height: 300px;
-  background-color: #cc6666;
+  background-color: #d47d7d;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -274,7 +275,7 @@ h1 {
 }
 
 #signup > a {
-  color: #cc6666;
+  color: #d47d7d;
 }
 
 input[type="search"] {
@@ -318,7 +319,7 @@ button {
 }
 
 .signin > a {
-  color: #cc6666 !important;
+  color: #d47d7d !important;
 }
 
 .signin > h2,

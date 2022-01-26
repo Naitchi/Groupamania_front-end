@@ -76,7 +76,7 @@ nav {
   }
   .nav-logo {
     font-size: 2rem !important;
-    background-color: #cc6666;
+    background-color: #d47d7d;
     border-radius: 0 0 10px 0;
     margin-bottom: 0 !important;
     padding: 0 5px;

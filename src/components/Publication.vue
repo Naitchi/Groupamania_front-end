@@ -567,7 +567,7 @@ a {
   &__btn {
     border: none;
     border-radius: 15px;
-    background-color: #cc6666;
+    background-color: #d47d7d;
     font-weight: 500;
   }
 }
@@ -589,11 +589,11 @@ a {
 .stick {
   width: 100px;
   height: 2px;
-  color: grey;
+  color: #575757 ;
 }
 .date {
   font-size: 0.7rem;
-  color: grey;
+  color: #575757;
 }
 .comment-section {
   width: 90%;
