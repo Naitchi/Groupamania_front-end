@@ -1,4 +1,8 @@
-# frontend
+# 💻 Groupamania front-end
+
+```
+front-end du site Groupamania, un réseau sociale 
+```
 
 ## Project setup
 ```
@@ -14,11 +18,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
